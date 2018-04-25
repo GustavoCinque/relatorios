@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="exemplo_pdf" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b2344385-181d-4007-b4cd-e312b783c8c8">
+	<property name="ireport.zoom" value="1.1000000000000025"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="3"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false"/>
+	<field name="descricaoPergunta" class="java.lang.String"/>
+	<field name="listaResposta" class="java.util.List"/>
+	<field name="tipoResposta.descricao" class="java.lang.String"/>
+	<field name="ordem" class="java.lang.Integer"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
+		<groupHeader>
+			<band height="1">
+				<line>
+					<reportElement x="0" y="0" width="554" height="1" uuid="efbb9e73-9496-470d-9cd1-d78b21a67613"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="80" splitType="Stretch">
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="71">
+		</band>
+	</title>
+	<columnHeader>
+		<band height="105">
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="66" splitType="Prevent">
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="66" uuid="8be31369-4bdf-45db-bfc2-d268cf2bba9c"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="554" y="0" width="1" height="66" uuid="bd618a9f-1c94-4614-894b-4bdff811e0d8"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="11" y="0" width="533" height="35" backcolor="#FFFFFF" uuid="76e9d21a-fad4-4420-a800-4287fa7be5d2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ordem} + ".    " + $F{descricaoPergunta}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="1" y="35" width="553" height="31" backcolor="#FFFFFF" uuid="25592ff6-341f-4f07-8235-0000000000a8">
+					<printWhenExpression><![CDATA[$F{tipoResposta.descricao}.equals("Dissertativa")]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="tipoResposta">
+					<subreportParameterExpression><![CDATA[$F{tipoResposta.descricao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanArrayDataSource($F{listaResposta}.toArray())]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "respostaDissertativa.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="1" y="35" width="553" height="31" backcolor="#FFFFFF" uuid="25592ff6-341f-4f07-8235-a876d7584e35">
+					<printWhenExpression><![CDATA[!($F{tipoResposta.descricao}.equals("Dissertativa"))]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="tipoResposta">
+					<subreportParameterExpression><![CDATA[$F{tipoResposta.descricao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanArrayDataSource($F{listaResposta}.toArray())]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "listaRespostas.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20">
+		</band>
+	</pageFooter>
+</jasperReport>

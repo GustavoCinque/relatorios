@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="respostaDissertativa" pageWidth="555" pageHeight="101" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="919ff97d-fb62-4a2f-80f8-0aa9f7aefbf8">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<detail>
+		<band height="90" splitType="Stretch">
+			<rectangle>
+				<reportElement x="11" y="0" width="532" height="90" uuid="939fd1df-e5f7-45d3-af27-dbf22871066a"/>
+			</rectangle>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="11">
+			<line>
+				<reportElement x="0" y="10" width="553" height="1" uuid="ba96b7d3-4ace-4735-a6c0-8192b2580fe6"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>
