@@ -48,24 +48,8 @@
 				<textFieldExpression><![CDATA[$F{ordem} + ".    " + $F{descricaoPergunta}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="1" y="35" width="553" height="31" backcolor="#FFFFFF" uuid="25592ff6-341f-4f07-8235-0000000000a8">
-					<printWhenExpression><![CDATA[$F{tipoResposta.descricao}.equals("Dissertativa")]]></printWhenExpression>
-				</reportElement>
-				<subreportParameter name="tipoResposta">
-					<subreportParameterExpression><![CDATA[$F{tipoResposta.descricao}]]></subreportParameterExpression>
-				</subreportParameter>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanArrayDataSource($F{listaResposta}.toArray())]]></dataSourceExpression>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="1" y="35" width="553" height="31" backcolor="#FFFFFF" uuid="25592ff6-341f-4f07-8235-0000000000a8"/>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "respostaDissertativa.jasper"]]></subreportExpression>
-			</subreport>
-			<subreport>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="1" y="35" width="553" height="31" backcolor="#FFFFFF" uuid="25592ff6-341f-4f07-8235-a876d7584e35">
-					<printWhenExpression><![CDATA[!($F{tipoResposta.descricao}.equals("Dissertativa"))]]></printWhenExpression>
-				</reportElement>
-				<subreportParameter name="tipoResposta">
-					<subreportParameterExpression><![CDATA[$F{tipoResposta.descricao}]]></subreportParameterExpression>
-				</subreportParameter>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanArrayDataSource($F{listaResposta}.toArray())]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "listaRespostas.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
